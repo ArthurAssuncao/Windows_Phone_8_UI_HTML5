@@ -1,0 +1,60 @@
+*.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body{
+    width: 100%;
+}
+
+.wp8{
+    margin: 20px;
+    width: 224px;
+}
+
+.tile{
+    color: #fff;
+    float:left;
+    margin: 3px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.area_soltura{
+    border: 1px solid #ccc;
+}
+
+.azul{
+    background-color: #1ba1e2;
+}
+
+.verde{
+    background-color: #339933;
+}
+
+.vermelho{
+    background-color: #e51400;
+}
+
+.tile1{
+    width: 50px;
+    height: 50px;
+}
+
+.tile2{
+    width: 106px;
+    height: 106px;
+}
+
+.tile3{
+    width: 218px;
+    height: 106px;
+}
