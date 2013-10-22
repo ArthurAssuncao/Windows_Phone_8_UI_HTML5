@@ -30,6 +30,11 @@ body{
 
 .area_soltura{
     border: 1px solid #ccc;
+    color: #fff;
+    float:left;
+    margin: 3px;
+    cursor: pointer;
+    text-align: center;
 }
 
 .azul{

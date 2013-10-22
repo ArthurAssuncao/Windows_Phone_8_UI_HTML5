@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    clicar_tile();
+    configurar_tiles();
 });
 
 function clique_tile(){
@@ -14,14 +14,19 @@ function clique_tile(){
     console.log(tile.className);
 }
 
-function clicar_tile(){
-    var tiles = document.getElementsByClassName('tile');
-    for(i=0; i < tiles.length; i++){
-        var tile = tiles[i];
+function configurar_tiles(){
+    $.each($('.tile'), function(i, tile){
         //console.log(tile);
         tile.onclick = clique_tile;
-    }
+        $tile = $(tile)
+        $tile.attr('draggable', 'true');
+        $tile.attr('ondragstart', 'dragStart(event)');
+        $tile.attr('ondragenter', 'return dragEnter(event)');
+        $tile.attr('ondrop', 'return dragDrop(event)');
+        $tile.attr('ondragover', 'return dragOver(event)');
+    });
 }
+
 function dragEnter(ev) {
     event.preventDefault();
     return true;
@@ -39,7 +44,6 @@ function dragStart(ev){
 }
 
 function dragDrop(ev){
-   var src = ev.dataTransfer.getData("Text");
    var tile_id = ev.dataTransfer.getData("tile_id");
    var tile = $('#'+tile_id);
    tile.insertBefore($(ev.target));
