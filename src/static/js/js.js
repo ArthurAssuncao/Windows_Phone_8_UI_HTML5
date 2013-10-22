@@ -41,7 +41,8 @@ function dragStart(ev){
 function dragDrop(ev){
    var src = ev.dataTransfer.getData("Text");
    var tile_id = ev.dataTransfer.getData("tile_id");
-   $(ev.target).insertBefore($('#'+tile_id));
+   var tile = $('#'+tile_id);
+   tile.insertBefore($(ev.target));
    ev.stopPropagation();
    return false;
 }
