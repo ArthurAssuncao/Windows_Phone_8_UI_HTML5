@@ -22,14 +22,26 @@ function clicar_tile(){
         tile.onclick = clique_tile;
     }
 }
-function allowDrop(ev){
-    ev.preventDefault();
+function dragEnter(ev) {
+    event.preventDefault();
+    return true;
 }
-function drag(ev){
-    ev.dataTransfer.setData("imagem", ev.target.id);
+
+function dragOver(ev) {
+    return false;
 }
-function drop(ev){
-    ev.preventDefault();
-    var id_data = ev.dataTransfer.getData("imagem");
-    ev.target.appendChild(document.getElementById(id_data));
+
+function dragStart(ev){
+    ev.dataTransfer.effectAllowed='move';
+    ev.dataTransfer.setData("tile_id", ev.target.id);
+    ev.dataTransfer.setDragImage(ev.target, 0, 0);
+    return true;
+}
+
+function dragDrop(ev){
+   var src = ev.dataTransfer.getData("Text");
+   var tile_id = ev.dataTransfer.getData("tile_id");
+   $(ev.target).insertBefore($('#'+tile_id));
+   ev.stopPropagation();
+   return false;
 }
