@@ -48,9 +48,9 @@ function dragStart(ev){
 }
 
 function dragDrop(ev){
-   var tile_id = ev.dataTransfer.getData("tile_id");
-   var tile = $('#'+tile_id);
-   tile.insertBefore($(ev.target));
-   ev.stopPropagation();
-   return false;
+    var tile_id = ev.dataTransfer.getData("tile_id");
+    var tile = $('#'+tile_id);
+    tile.insertBefore($(ev.target));
+    ev.stopPropagation();
+    return false;
 }
