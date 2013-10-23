@@ -4,13 +4,17 @@ $(document).ready(function(){
 
 function clique_tile(){
     var tile = this;
-    console.log(tile.className);
+    
+    var result_regex = tile.className.match(/tile_tam_(\d+)/);
+    var tile_tam = result_regex[1];
+    var indice_resultado = result_regex['index'];
+
     var tam = tile.className.length;
-    var tipo = parseInt(tile.className.substring(tam-1, tam))+1;
-    if(tipo % 4 == 0){
-        tipo = 1;
+    tile_tam = parseInt(tile_tam) + 1;
+    if(tile_tam % 4 == 0){
+        tile_tam = 1;
     }
-    tile.className = tile.className.substring(0, tam-1)+(tipo);
+    tile.className = tile.className.substring(0, indice_resultado + 'tile_tam_'.length) + (tile_tam) + tile.className.substring(indice_resultado + 'tile_tam_'.length + 1, tam);
     console.log(tile.className);
 }
 
