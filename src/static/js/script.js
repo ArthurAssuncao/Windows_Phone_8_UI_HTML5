@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 function clique_tile(){
     var tile = this;
+    console.log(tile);
     
     var result_regex = tile.className.match(/tile_tam_(\d+)/);
     var tile_tam = result_regex[1];
@@ -18,10 +19,10 @@ function clique_tile(){
     console.log(tile.className);
 }
 
-function criar_tile(id, tam, texto){
-    var tile = '<div class="tile azul tile_tam_' + tam + '" id="' + id + '">' + texto + '</div>';
+function criar_tile(id, tam, titulo, texto){
+    var tile = '<div class="tile azul tile_tam_' + tam + '" id="' + id + '">' + '<span class="tile_titulo">' + titulo + '</span><span class="tile_texto">' + texto + '</span><img class="tile_icon" src="static/img/file_icon.png"></img>' + '</div>';
     $tile = $(tile);
-    $tile.onclick = clique_tile;
+    //$tile.onclick = clique_tile;
     $tile.attr('draggable', 'true');
     $tile.attr('ondragstart', 'dragStart(event)');
     $tile.attr('ondragenter', 'return dragEnter(event)');
@@ -43,6 +44,14 @@ function configurar_tiles(){
         $tile.attr('ondragover', 'return dragOver(event)');
         $tile.attr('ondragend', 'return dragEnd(event)');
     });
+    $wp8 = $('#wp8');
+    $wp8.attr('draggable', 'true');
+    $wp8.attr('ondrop', 'return dragDrop(event)');
+    $wp8.attr('ondragstart', 'dragStart(event)');
+    $wp8.attr('ondragenter', 'return dragEnter(event)');
+    $wp8.attr('ondrop', 'return dragDrop(event)');
+    $wp8.attr('ondragover', 'return dragOver(event)');
+    $wp8.attr('ondragend', 'return dragEnd(event)');
 }
 
 function iniciar_drag_and_drop(tile_id){
@@ -61,23 +70,36 @@ function finalizar_drag_and_drop(){
     });
 }
 
+/*
+    Evento disparado ao cancelar o drag and drop, soltar o botao do mouse.
+*/
 function dragEnd(ev) {
     console.log("dragEnd()");
     ev.dataTransfer.clearData("tile_id");
+    finalizar_drag_and_drop();
     return true;
 }
 
+/*
+    Evento disparado ao entrar em uma area de soltura
+*/
 function dragEnter(ev) {
-    //console.log("dragEnter()");
+    console.log("dragEnter()");
     ev.preventDefault();
     return true;
 }
 
+/*
+    Evento disparado ao movimento o objeto sobre uma area de soltura
+*/
 function dragOver(ev) {
     //console.log("dragOver()");
     return false;
 }
 
+/*
+    Evento disparado ao iniciar o arrastar
+*/
 function dragStart(ev){
     console.log("dragStart()");
     iniciar_drag_and_drop(ev.target.id);
@@ -87,6 +109,9 @@ function dragStart(ev){
     return true;
 }
 
+/*
+    Evento disparado ao soltar um objeto sobre uma area de soltura
+*/
 function dragDrop(ev){
     console.log("dragDrop()");
     if(ev.dataTransfer.files.length == 0){
@@ -101,9 +126,9 @@ function dragDrop(ev){
         console.log(arquivo.size);
         console.log(arquivo.type);
 
-        var texto = arquivo.name + '\n' + arquivo.type;
-        var tile = criar_tile(arquivo.name, 2, texto);
+        var tile = criar_tile(arquivo.name.replace('.', '_'), 2, arquivo.name, arquivo.type);
         $(tile).insertBefore($(ev.target));
+        $('#' + arquivo.name.replace('.', '_'))[0].onclick = clique_tile;
     }
     
     ev.stopPropagation();

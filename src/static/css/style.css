@@ -13,11 +13,13 @@
 
 body{
     width: 100%;
+    font-size: 12px;
 }
 
 #wp8{
     margin: 20px;
     width: 224px;
+    height: auto;
 }
 
 .tile{
@@ -62,4 +64,18 @@ body{
 .tile_tam_3{
     width: 218px;
     height: 106px;
+}
+.tile_titulo{
+    display: block;
+}
+.tile_texto{
+    display: block;
+}
+.tile_icon{
+    width: 48px;
+    height: 48px;
+    opacity: 0.8;
+}
+.tile_tam_1 > .tile_texto, .tile_tam_1 > .tile_icon{
+    display: none;
 }
