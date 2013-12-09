@@ -25,7 +25,8 @@ function dragEnter(ev) {
 function dragOver(ev) {
     console.log("dragOver()");
     ev.dataTransfer.dropEffect = 'move'; //da um feedback pro usuario, no caso, o mouse muda para indicar que é uma movimentacao, none, move, copy ou link
-    ev.preventDefault(); //evita que o objeto volte para o seu lugar, evita que chame apenas o dragEnd e não chame o drop
+    // Por padrao arquivos e elementos não podem ser soltos em outros elementos, entao tem q tirar a acao padrao
+    ev.preventDefault(); //evita que o objeto volte para o seu lugar, evita que chame apenas o dragEnd e não chame o drop.
     return false;
 }
 
@@ -45,6 +46,7 @@ function dragStart(ev){
 */
 function dragDrop(ev){
     console.log("dragDrop()");
+    // por padrao arquivos sao abertos no navegador ao soltar, tem q prevenir essa acao
     ev.preventDefault();
     if(ev.dataTransfer.files.length == 0){
         var objeto = ev.dataTransfer.getData("objeto");
