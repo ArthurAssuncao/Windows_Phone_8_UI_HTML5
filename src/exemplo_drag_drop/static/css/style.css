@@ -1,0 +1,12 @@
+#objeto{
+    background: #f00;
+    width: 50px;
+    height: 50px;
+    left: 400px;
+}
+
+#area{
+    background: #ccc;
+    width: 100px;
+    height: 100px;
+}

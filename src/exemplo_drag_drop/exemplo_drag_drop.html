@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <meta charset="utf-8" />
+    <title>Exemplo Drag and Drop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Arthur Assunção" />
+    <link rel="stylesheet" href="static/css/style.css" />
+    <style>
+
+    </style>
+    </head>
+    <body>
+        <div id="area" ondragover="dragOver(event)" ondragenter="dragEnter(event)" ondrop="dragDrop(event)">
+        </div>
+        <br>
+        <div id="objeto" draggable="true" ondragend="dragEnd(event)" ondragstart="dragStart(event)">
+        </div>
+
+        <script src="static/js/jquery-1.10.2.js"></script>
+        <script src="static/js/script.js"></script>
+    </body>
+</html>

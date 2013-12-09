@@ -46,7 +46,6 @@ function configurar_tiles(){
     });
     $wp8 = $('#wp8');
     $wp8.attr('draggable', 'true');
-    $wp8.attr('ondrop', 'return dragDrop(event)');
     $wp8.attr('ondragstart', 'dragStart(event)');
     $wp8.attr('ondragenter', 'return dragEnter(event)');
     $wp8.attr('ondrop', 'return dragDrop(event)');
@@ -94,6 +93,7 @@ function dragEnter(ev) {
 */
 function dragOver(ev) {
     //console.log("dragOver()");
+    ev.preventDefault();
     return false;
 }
 
