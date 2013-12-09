@@ -44,13 +44,13 @@ function configurar_tiles(){
         $tile.attr('ondragover', 'return dragOver(event)');
         $tile.attr('ondragend', 'return dragEnd(event)');
     });
-    $wp8 = $('#wp8');
+    /*$wp8 = $('#wp8');
     $wp8.attr('draggable', 'true');
     $wp8.attr('ondragstart', 'dragStart(event)');
     $wp8.attr('ondragenter', 'return dragEnter(event)');
     $wp8.attr('ondrop', 'return dragDrop(event)');
     $wp8.attr('ondragover', 'return dragOver(event)');
-    $wp8.attr('ondragend', 'return dragEnd(event)');
+    $wp8.attr('ondragend', 'return dragEnd(event)');*/
 }
 
 function iniciar_drag_and_drop(tile_id){
