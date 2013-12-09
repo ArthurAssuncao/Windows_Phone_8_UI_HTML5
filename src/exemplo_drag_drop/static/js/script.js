@@ -16,7 +16,6 @@ function dragEnd(ev) {
 */
 function dragEnter(ev) {
     console.log("dragEnter()");
-    ev.preventDefault();
     return true;
 }
 
@@ -25,7 +24,8 @@ function dragEnter(ev) {
 */
 function dragOver(ev) {
     console.log("dragOver()");
-    ev.preventDefault();
+    ev.dataTransfer.dropEffect = 'move'; //da um feedback pro usuario, no caso, o mouse muda para indicar que é uma movimentacao, none, move, copy ou link
+    ev.preventDefault(); //evita que o objeto volte para o seu lugar, evita que chame apenas o dragEnd e não chame o drop
     return false;
 }
 
@@ -34,7 +34,7 @@ function dragOver(ev) {
 */
 function dragStart(ev){
     console.log("dragStart()");
-    ev.dataTransfer.effectAllowed='move';
+    ev.dataTransfer.effectAllowed = 'move'; //se for diferente do dropEffect do dragOver, ele nao dropa. Permitido none, copy, copyLink, copyMove, link, linkMove, move, all e uninitialized
     ev.dataTransfer.setData("objeto", ev.target.id);
     ev.dataTransfer.setDragImage(ev.target, 0, 0);
     return true;
@@ -45,6 +45,7 @@ function dragStart(ev){
 */
 function dragDrop(ev){
     console.log("dragDrop()");
+    ev.preventDefault();
     if(ev.dataTransfer.files.length == 0){
         var objeto = ev.dataTransfer.getData("objeto");
         console.log('id do objeto: ', objeto);
@@ -52,13 +53,28 @@ function dragDrop(ev){
     }
     else{
         var arquivo = ev.dataTransfer.files[0];
-        console.log(arquivo.lastModifiedDate);
-        console.log(arquivo.name);
-        console.log(arquivo.size);
-        console.log(arquivo.type);
-        ev.target.innerHTML(ev.target.innerHTML() + '<span>' + arquivo.name + '</span>');
+        console.log('Data modificacao: ', arquivo.lastModifiedDate);
+        console.log('Nome arquivo: ', arquivo.name);
+        console.log('Tamanho arquivo em bytes: ', arquivo.size);
+        console.log('Tipo do arquivo: ', arquivo.type);
+        ev.target.innerHTML = ev.target.innerHTML + '<span>' + arquivo.name + '</span>';
     }
-    
-    ev.stopPropagation();
+
+    return false;
+}
+
+/*
+    Evento disparado quando o mouse deixa a area original do objeto
+*/
+function dragLeave(ev){
+    console.log("dragLeave()");
+    return false;
+}
+
+/*
+    Evento disparado toda vez que o objeto é movimentado
+*/
+function drag(ev){
+    console.log("drag()");
     return false;
 }

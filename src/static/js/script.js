@@ -93,6 +93,7 @@ function dragEnter(ev) {
 */
 function dragOver(ev) {
     //console.log("dragOver()");
+    ev.dataTransfer.dropEffect = 'move';
     ev.preventDefault();
     return false;
 }
@@ -114,6 +115,7 @@ function dragStart(ev){
 */
 function dragDrop(ev){
     console.log("dragDrop()");
+    ev.preventDefault();
     if(ev.dataTransfer.files.length == 0){
         var tile_id = ev.dataTransfer.getData("tile_id");
         var tile = $('#'+tile_id);
